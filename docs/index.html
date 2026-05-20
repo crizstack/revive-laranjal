@@ -1821,29 +1821,38 @@ Error generating stack: `+l.message+`
 
     // Initialize Map
     function initMap() {
-      const laranjal = [-31.76, -52.34]; // Coordinates of Canal São Gonçalo in Pelotas
-      const map = L.map('map').setView(laranjal, 11);
+      const ponte = [-31.7879739, -52.2324271]; // Coordinates of the bridge where EcoBarrier will be installed
+      const map = L.map('map').setView(ponte, 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 19
       }).addTo(map);
 
-      // Add marker for Canal São Gonçalo
-      L.circleMarker(laranjal, {
-        radius: 8,
-        fillColor: '#1b7d5a',
+      // Add marker for the bridge where EcoBarrier will be installed
+      L.circleMarker(ponte, {
+        radius: 10,
+        fillColor: '#ff9500',
         color: '#fff',
-        weight: 2,
+        weight: 3,
         opacity: 1,
-        fillOpacity: 0.8
-      }).addTo(map).bindPopup('<b>Canal São Gonçalo - Laranjal</b><br>Ponto estratégico do projeto piloto<br>Rio Grande do Sul, Brasil');
+        fillOpacity: 0.9
+      }).addTo(map).bindPopup('<b>Ponte - Local da EcoBarrier</b><br>Sistema piloto modular<br>Canal São Gonçalo, Pelotas<br>Rio Grande do Sul, Brasil');
 
-      // Add some key cities
+      // Add a larger circle to show the area of influence
+      L.circle(ponte, {
+        radius: 200,
+        fillColor: '#ff9500',
+        color: '#ff9500',
+        weight: 1,
+        opacity: 0.3,
+        fillOpacity: 0.1
+      }).addTo(map);
+
+      // Add reference cities
       const cities = [
-        { name: 'Rio Grande', coords: [-32.0343, -52.0986] },
         { name: 'Pelotas', coords: [-31.7648, -52.3382] },
-        { name: 'São Lourenço do Sul', coords: [-33.3025, -52.2141] }
+        { name: 'Rio Grande', coords: [-32.0343, -52.0986] }
       ];
 
       cities.forEach(city => {
