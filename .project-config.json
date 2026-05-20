@@ -1,0 +1,35 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663599793935/TPCCvi8AfRAWVpZnfpqUwU",
+    "access_key_id": "ASIAZV3A2ECZMOBWQT7H",
+    "secret_access_key": "wtZpQkFceYvNmSTBRoeuaApLsj2aqoe1ZsEm1RWV",
+    "session_token": "IQoJb3JpZ2luX2VjEBoaCXVzLWVhc3QtMSJHMEUCIEadZ9S0b/fIEqQU7bBAwmWzHDzh1i1GaDojUVVH2yNlAiEA2iH1GPVMBqYzS+NjxQZ78Unb/5Zuj+/WrRPeiPUxfoYq/wMI4///////////ARAEGgw2NjUzODYwOTg4NjYiDLXwyktvi2UHY84F6yrTA44mHKsegs46Zj1NvW3uPCSHS5LriNbWoexSvFBUQhB9/RHiv7PZ8JlFZS9xCO6SF7C6IfBExZjvT8uJw+h2amydfuSSC0yCL/miFsEDTqaQI/NnAC4wyjqZGTyOA1TO1KIc7ZsxqUGR0UsaY+AIct5l521E2+UQ+RNdDUxOXSMOhUbQK6NaCHr/qf3uiXvoDa6EjvOq0iBz2yfZfxJLnDQD6uw9IsYN44zcOCuJ/Uf66skTJthWmYLVkMFAYJ8dzuVx8xRqUUwrIWCkvVeY1sPAdiO4ErMgx5L78IWD1xcbl/XFp7KQC8Pf/tMuLSNqfJHo/uon28KGgo/TlwtPZSa2u1vM/V+HevaJ6cTySMaHCPU1xgNBCFnuNip4E4jmLZ7zsOXbjc8xyyNbQvkW3u8Mz+g/Iddc0WKJyH56Er9wSjzAWaCHLUHdtdy0ggrYhqD5MFMLugTXG/7Tzp+dXY/37rEXvyFlXRv56wTS8VHMONHxZALVOXLSdNrUpOShq7Pbfpc0lK4J6IV+JoFQLIiu6MLeImnV0S6LOur7q/bi4G8Ji7UhlrFE5RVrrJheNJuVcbZwAonL0oSH0tWuyH+ah7fFEQHinLsXs6jqIyBWGe1oMJ2gtNAGOp0Bs/d9vR/ehaDQFlu6SEbzSDRLJq1Nxbex6pA6dtlBhbr60w9WGOZKvdjsiV+3ZhhULNSqDimiIhxuopUfxjwIlAFJIGx5wGMar5euaXDHXnIO0m0MrJmG7hacZqNxMjUwbEmCgtObSG9d9XQHTMk6SwJShVviP2+Ol9BimEqTCt94lXIskBbUKip+4qF+05sKwnKozCIEw8U4e72oaA==",
+    "expiration": "2026-05-20T13:36:29.000Z"
+  },
+  "name": "revive-laranjal",
+  "path": "/home/ubuntu/revive-laranjal",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "QGZLtVRbmmDK6GFzYZsPme",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "H8tk9ebNVztHsbNvmHncGS",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "AutoInvest",
+    "OWNER_OPEN_ID": "QzwwFWhEwVvaSeeKAT8iMh",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "85071ce9-9935-400d-a88c-0305380408ca",
+    "VITE_APP_ID": "TPCCvi8AfRAWVpZnfpqUwU",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "Revive Laranjal - Tecnologia Ambiental para a Lagoa dos Patos",
+    "VITE_FRONTEND_FORGE_API_KEY": "o7zwXTvzBYDoFPQYhVhNYd",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
