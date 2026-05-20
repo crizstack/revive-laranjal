@@ -1,26 +1,1671 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Revive Laranjal - Preservando a Lagoa dos Patos</title>
+  <meta name="description" content="Revive Laranjal: Tecnologia EcoBarrier para preservação e restauração da Lagoa dos Patos. Inovação, sustentabilidade e impacto ambiental." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Leaflet for Interactive Map -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>{{project_title}}</title>    
-    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
-  </head>
+    :root {
+      --primary-blue: #0066cc;
+      --secondary-blue: #0099ff;
+      --accent-green: #00b366;
+      --accent-orange: #ff8c00;
+      --dark-bg: #0a1428;
+      --light-bg: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-light: #666666;
+      --border-color: #e0e0e0;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+    html {
+      scroll-behavior: smooth;
+    }
 
+    body {
+      font-family: 'Sora', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-blue);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+    }
+
+    .cta-button.secondary {
+      background: white;
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+    }
+
+    .cta-button.secondary:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 70px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 179, 102, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Problem Section */
+    #problema {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary-blue);
+    }
+
+    .problem-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-left-color: var(--accent-green);
+    }
+
+    .problem-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-blue);
+    }
+
+    .problem-card p {
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* How It Works Section */
+    #como-funciona {
+      background: white;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    .step h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .step p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Differentials Section */
+    #diferenciais {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+    }
+
+    .differentials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .differential-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--accent-green);
+    }
+
+    .differential-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .differential-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--accent-green), #00d966);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .differential-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .differential-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Mission Section */
+    #missao {
+      background: white;
+      text-align: center;
+    }
+
+    .mission-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      border-radius: 20px;
+      border: 2px solid rgba(0, 102, 204, 0.1);
+    }
+
+    .mission-content h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-blue);
+    }
+
+    .mission-content p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Target Audience Section */
+    #publico-alvo {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .audience-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .audience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .audience-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .audience-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .audience-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Business Model Section */
+    #modelo-negocio {
+      background: white;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .model-card {
+      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 2px solid rgba(0, 102, 204, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .model-card:hover {
+      border-color: var(--accent-green);
+      box-shadow: var(--shadow);
+    }
+
+    .model-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-blue);
+    }
+
+    .model-card ul {
+      list-style: none;
+      color: var(--text-light);
+    }
+
+    .model-card li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .model-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    /* Social Project Section */
+    #projeto-social {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+    }
+
+    .social-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .social-text h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .social-text p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .social-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Team Section */
+    #equipe {
+      background: white;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .team-member-image {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    .team-member h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+
+    .team-member p {
+      font-size: 0.9rem;
+      color: var(--primary-blue);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member span {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* Metrics Section */
+    #metricas {
+      background: linear-gradient(135deg, #0a1428 0%, #1a2a4a 100%);
+      color: white;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .metric-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .metric-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Investors Section */
+    #investidores {
+      background: white;
+    }
+
+    .investor-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .investor-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .investor-text h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .investor-text p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .investor-highlights {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border-color);
+    }
+
+    .highlight-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+
+    .highlight-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .highlight-text h4 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+
+    .highlight-text p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* Map Section */
+    #mapa {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+    }
+
+    #map-container {
+      width: 100%;
+      height: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-top: 2rem;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Contact Section */
+    #contato {
+      background: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .contact-details h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+
+    .contact-details p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-bg);
+      color: white;
+      padding: 3rem 0 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 1rem;
+      color: var(--accent-green);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent-green);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+    }
+
+    .scroll-to-top.show {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .social-content,
+      .investor-content,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #map-container {
+        height: 300px;
+      }
+
+      .team-grid,
+      .problem-grid,
+      .audience-grid,
+      .differentials-grid,
+      .model-grid,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .cta-button {
+        width: 100%;
+        text-align: center;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">🌿 Revive Laranjal</div>
+      <ul class="nav-links">
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#missao">Missão</a></li>
+        <li><a href="#investidores">Investidores</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <button class="cta-button" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">Fale Conosco</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Revivendo a Lagoa dos Patos</h1>
+          <p>Tecnologia EcoBarrier: inovação ambiental que preserva, restaura e protege o maior ecossistema aquático da América do Sul através de soluções tecnológicas sustentáveis.</p>
+          <div class="hero-buttons">
+            <button class="cta-button" onclick="document.getElementById('como-funciona').scrollIntoView({ behavior: 'smooth' })">Saiba Mais</button>
+            <button class="cta-button secondary" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">Seja um Parceiro</button>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663599793935/TPCCvi8AfRAWVpZnfpqUwU/hero-lagoa-patos-XpdpLRtSqoktFr6hTmb8fp.webp" alt="Lagoa dos Patos ao entardecer" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problema Section -->
+  <section id="problema">
+    <div class="container">
+      <div class="section-header">
+        <h2>O Desafio Ambiental</h2>
+        <p>A Lagoa dos Patos enfrenta ameaças críticas que comprometem sua biodiversidade e sustentabilidade</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>💧 Desequilíbrio de Salinidade</h3>
+          <p>Excesso de água doce prejudica a reprodução de espécies marinhas e altera o ecossistema estuarino delicado.</p>
+        </div>
+        <div class="problem-card">
+          <h3>🌊 Poluição Aquática</h3>
+          <p>Sedimentos com carga química 6x acima do normal comprometem a qualidade da água e a vida aquática.</p>
+        </div>
+        <div class="problem-card">
+          <h3>🔍 Turbidez Crítica</h3>
+          <p>Falta de transparência reduz penetração de luz, diminuindo fotossíntese e afetando toda a cadeia alimentar.</p>
+        </div>
+        <div class="problem-card">
+          <h3>🌱 Assoreamento</h3>
+          <p>Desmatamento das margens causa assoreamento, reduzindo profundidade e capacidade de navegação.</p>
+        </div>
+        <div class="problem-card">
+          <h3>🌡️ Mudanças Climáticas</h3>
+          <p>Alterações de temperatura e padrões de salinidade afetam ciclos reprodutivos e aves migratórias.</p>
+        </div>
+        <div class="problem-card">
+          <h3>🦅 Biodiversidade em Risco</h3>
+          <p>200+ espécies de aves e fauna aquática sofrem com degradação do habitat e redução de alimentos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona Section -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <h2>Como Funciona a EcoBarrier</h2>
+        <p>Tecnologia inovadora de filtração e proteção ambiental</p>
+      </div>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Captura Inteligente</h3>
+          <p>Sistema de barreiras flutuantes captura sedimentos e poluentes antes que contaminem a lagoa.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Filtração Avançada</h3>
+          <p>Tecnologia de múltiplas camadas filtra partículas, nutrientes em excesso e contaminantes químicos.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Monitoramento em Tempo Real</h3>
+          <p>Sensores IoT rastreiam qualidade da água, salinidade, turbidez e biodiversidade continuamente.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Restauração Ecológica</h3>
+          <p>Dados alimentam programas de restauração de habitats e reintrodução de espécies nativas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferenciais Section -->
+  <section id="diferenciais">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nossos Diferenciais</h2>
+        <p>Por que a EcoBarrier é a solução mais inovadora para preservação ambiental</p>
+      </div>
+      <div class="differentials-grid">
+        <div class="differential-card">
+          <div class="differential-icon">🔬</div>
+          <h3>Tecnologia Proprietária</h3>
+          <p>Sistema patenteado de filtração que combina engenharia ambiental com IA para máxima eficiência.</p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">📊</div>
+          <h3>Dados em Tempo Real</h3>
+          <p>Plataforma de monitoramento que fornece insights sobre qualidade ambiental e impacto das ações.</p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">♻️</div>
+          <h3>100% Sustentável</h3>
+          <p>Materiais ecológicos, energia renovável e zero resíduos no processo de operação.</p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">🌍</div>
+          <h3>Escalável Globalmente</h3>
+          <p>Modelo adaptável para diferentes ecossistemas aquáticos em todo o mundo.</p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">💰</div>
+          <h3>ROI Comprovado</h3>
+          <p>Retorno mensurável em biodiversidade, turismo e economia local em 12-18 meses.</p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">🤝</div>
+          <h3>Parcerias Estratégicas</h3>
+          <p>Colaboração com universidades, ONGs e órgãos ambientais para máximo impacto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nossa Missão Section -->
+  <section id="missao">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nossa Missão</h2>
+      </div>
+      <div class="mission-content">
+        <h3>Preservar e Restaurar Ecossistemas Aquáticos Através da Inovação Tecnológica</h3>
+        <p>Na Revive Laranjal, acreditamos que a tecnologia deve servir à natureza. Nossa missão é desenvolver soluções inovadoras que não apenas protejam a Lagoa dos Patos, mas que sirvam como modelo para preservação de ecossistemas aquáticos em todo o mundo.</p>
+        <p>Combinamos engenharia de ponta, ciência ambiental e compromisso social para criar um futuro onde a tecnologia e a natureza trabalham em harmonia perfeita.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Público-Alvo Section -->
+  <section id="publico-alvo">
+    <div class="container">
+      <div class="section-header">
+        <h2>Público-Alvo e Mercado</h2>
+        <p>Soluções para múltiplos stakeholders interessados em sustentabilidade</p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-icon">🏛️</div>
+          <h3>Órgãos Governamentais</h3>
+          <p>Secretarias de Meio Ambiente, agências de proteção ambiental e gestão de recursos hídricos.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🏢</div>
+          <h3>Empresas Sustentáveis</h3>
+          <p>Corporações comprometidas com ESG e responsabilidade ambiental corporativa.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🌱</div>
+          <h3>ONGs Ambientais</h3>
+          <p>Organizações focadas em conservação, restauração ecológica e educação ambiental.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🎓</div>
+          <h3>Instituições Acadêmicas</h3>
+          <p>Universidades e centros de pesquisa em ciências ambientais e engenharia.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">🌍</div>
+          <h3>Comunidades Locais</h3>
+          <p>Populações ribeirinhas que dependem da lagoa para subsistência e qualidade de vida.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">💼</div>
+          <h3>Investidores de Impacto</h3>
+          <p>Fundos e investidores focados em retorno financeiro com impacto ambiental positivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modelo de Negócio Section -->
+  <section id="modelo-negocio">
+    <div class="container">
+      <div class="section-header">
+        <h2>Modelo de Negócio e Impacto ESG</h2>
+        <p>Sustentabilidade financeira com máximo impacto ambiental</p>
+      </div>
+      <div class="model-grid">
+        <div class="model-card">
+          <h3>Receitas</h3>
+          <ul>
+            <li>Licenciamento de tecnologia EcoBarrier</li>
+            <li>Serviços de monitoramento e consultoria</li>
+            <li>Venda de dados ambientais e insights</li>
+            <li>Projetos de restauração ecológica</li>
+            <li>Treinamento e capacitação técnica</li>
+          </ul>
+        </div>
+        <div class="model-card">
+          <h3>Impacto Ambiental (E)</h3>
+          <ul>
+            <li>Redução de 85% em poluição aquática</li>
+            <li>Restauração de 10.000 ha de habitat</li>
+            <li>Aumento de 200+ espécies de fauna</li>
+            <li>Melhoria de 90% na qualidade da água</li>
+            <li>Sequestro de carbono: 50.000 t/ano</li>
+          </ul>
+        </div>
+        <div class="model-card">
+          <h3>Impacto Social (S)</h3>
+          <ul>
+            <li>2.000+ empregos diretos e indiretos</li>
+            <li>Educação ambiental para 50.000 pessoas</li>
+            <li>Resgate e reabilitação de fauna</li>
+            <li>Melhoria de renda para comunidades</li>
+            <li>Segurança alimentar para populações</li>
+          </ul>
+        </div>
+        <div class="model-card">
+          <h3>Governança (G)</h3>
+          <ul>
+            <li>Conselho multidisciplinar de especialistas</li>
+            <li>Transparência total em operações</li>
+            <li>Conformidade com legislação ambiental</li>
+            <li>Parcerias com órgãos reguladores</li>
+            <li>Relatórios de impacto anuais verificados</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projeto Social Section -->
+  <section id="projeto-social">
+    <div class="container">
+      <div class="section-header">
+        <h2>Projeto Social: Resgate e Conscientização</h2>
+      </div>
+      <div class="social-content">
+        <div class="social-text">
+          <h3>Resgatando Vidas Aquáticas</h3>
+          <p>Nosso programa de resgate animal atua na reabilitação e reintrodução de espécies ameaçadas de extinção na Lagoa dos Patos.</p>
+          <p>Através de parcerias com universidades e ONGs, realizamos:</p>
+          <ul style="margin-left: 1.5rem; color: var(--text-light);">
+            <li>Resgate e reabilitação de aves migratórias feridas</li>
+            <li>Monitoramento de populações de peixes nativos</li>
+            <li>Programas de reintrodução de espécies</li>
+            <li>Educação ambiental em escolas locais</li>
+            <li>Campanhas de conscientização comunitária</li>
+          </ul>
+          <p style="margin-top: 1rem;">Já resgatamos mais de 5.000 animais e impactamos 50.000 pessoas com educação ambiental.</p>
+        </div>
+        <div class="social-image">
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663599793935/TPCCvi8AfRAWVpZnfpqUwU/team-collaboration-AcNokYNqsLvgpVQaKyxJJN.webp" alt="Equipe trabalhando em projeto social" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipe Section -->
+  <section id="equipe">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nossa Equipe</h2>
+        <p>Especialistas dedicados à preservação ambiental</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-member-image">👨‍💼</div>
+          <h3>Dr. Carlos Silva</h3>
+          <p>CEO & Fundador</p>
+          <span>Engenheiro Ambiental, PhD em Sustentabilidade</span>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">👩‍🔬</div>
+          <h3>Dra. Marina Santos</h3>
+          <p>Diretora Científica</p>
+          <span>Bióloga Marinha, 15 anos de pesquisa</span>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">👨‍💻</div>
+          <h3>João Oliveira</h3>
+          <p>CTO</p>
+          <span>Engenheiro de Software, Especialista em IoT</span>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">👩‍💼</div>
+          <h3>Fernanda Costa</h3>
+          <p>Diretora de Impacto Social</p>
+          <span>Assistente Social, Especialista em Comunidades</span>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">👨‍🔧</div>
+          <h3>Roberto Mendes</h3>
+          <p>Engenheiro de Operações</p>
+          <span>Especialista em Sistemas de Filtração</span>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">👩‍📊</div>
+          <h3>Juliana Ferreira</h3>
+          <p>Analista de Dados</p>
+          <span>Cientista de Dados, Especialista em Análise Ambiental</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Métricas Section -->
+  <section id="metricas">
+    <div class="container">
+      <div class="section-header" style="color: white;">
+        <h2 style="color: white;">Dados e Métricas de Impacto</h2>
+        <p style="color: rgba(255, 255, 255, 0.8);">Resultados mensuráveis de nosso trabalho</p>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-number">85%</div>
+          <div class="metric-label">Redução de Poluição</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">10K+</div>
+          <div class="metric-label">Hectares Restaurados</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">5K+</div>
+          <div class="metric-label">Animais Resgatados</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">50K+</div>
+          <div class="metric-label">Pessoas Impactadas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">200+</div>
+          <div class="metric-label">Espécies Protegidas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">50K</div>
+          <div class="metric-label">Toneladas CO₂ Sequestradas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa Section -->
+  <section id="mapa">
+    <div class="container">
+      <div class="section-header">
+        <h2>Localização: Lagoa dos Patos</h2>
+        <p>Maior lagoa da América do Sul, localizada no Rio Grande do Sul, Brasil</p>
+      </div>
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investidores Section -->
+  <section id="investidores">
+    <div class="container">
+      <div class="section-header">
+        <h2>Para Investidores</h2>
+        <p>Oportunidade de impacto financeiro e ambiental</p>
+      </div>
+      <div class="investor-content">
+        <div class="investor-image">
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663599793935/TPCCvi8AfRAWVpZnfpqUwU/environmental-data-visualization-7rgptWh5n9PhSPnc9ajkb3.webp" alt="Dados de impacto ambiental" />
+        </div>
+        <div class="investor-text">
+          <h3>Oportunidade de Investimento</h3>
+          <p>Revive Laranjal busca investimento de R$ 50 milhões para expandir operações e impacto ambiental nos próximos 3 anos.</p>
+          
+          <div class="investor-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">📈</div>
+              <div class="highlight-text">
+                <h4>Projeção de Retorno</h4>
+                <p>ROI de 25-35% ao ano com payback em 4-5 anos</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🌍</div>
+              <div class="highlight-text">
+                <h4>Impacto Mensurável</h4>
+                <p>Relatórios trimestrais de impacto ambiental e social verificados</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🏆</div>
+              <div class="highlight-text">
+                <h4>Modelo Comprovado</h4>
+                <p>Piloto bem-sucedido com resultados superiores às expectativas</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🤝</div>
+              <div class="highlight-text">
+                <h4>Parcerias Estratégicas</h4>
+                <p>Apoio de universidades, ONGs e órgãos governamentais</p>
+              </div>
+            </div>
+          </div>
+          
+          <button class="cta-button" style="margin-top: 2rem; width: 100%;" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">Solicitar Apresentação</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato Section -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-header">
+        <h2>Entre em Contato</h2>
+        <p>Vamos conversar sobre como trabalhar juntos pela preservação da Lagoa dos Patos</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-details">
+              <h3>Endereço</h3>
+              <p>Rio Grande, RS - Brasil<br>Região da Lagoa dos Patos</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-details">
+              <h3>Telefone</h3>
+              <p>+55 (53) 99999-9999</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>contato@revivelaranjal.com.br</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div class="contact-details">
+              <h3>Redes Sociais</h3>
+              <div class="social-links">
+                <a href="#" class="social-link" title="LinkedIn">in</a>
+                <a href="#" class="social-link" title="Instagram">📷</a>
+                <a href="#" class="social-link" title="Facebook">f</a>
+                <a href="#" class="social-link" title="YouTube">▶</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Assunto</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Sobre Revive Laranjal</h4>
+          <p>Startup ambiental dedicada à preservação e restauração da Lagoa dos Patos através de tecnologia inovadora e sustentável.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Links Rápidos</h4>
+          <a href="#problema">Problema Ambiental</a>
+          <a href="#como-funciona">Como Funciona</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#investidores">Para Investidores</a>
+        </div>
+        <div class="footer-section">
+          <h4>Recursos</h4>
+          <a href="#">Blog</a>
+          <a href="#">Documentação Técnica</a>
+          <a href="#">Relatórios de Impacto</a>
+          <a href="#">Políticas</a>
+        </div>
+        <div class="footer-section">
+          <h4>Conecte-se</h4>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Revive Laranjal. Todos os direitos reservados. | Preservando a Lagoa dos Patos para as futuras gerações.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+  <!-- Leaflet Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+  <script>
+    // Scroll to Top Functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+      } else {
+        scrollToTopBtn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Initialize Map
+    function initMap() {
+      const lagoa = [-32.1, -52.3]; // Coordinates of Lagoa dos Patos
+      const map = L.map('map').setView(lagoa, 9);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Add marker for Lagoa dos Patos
+      L.circleMarker(lagoa, {
+        radius: 8,
+        fillColor: '#0066cc',
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map).bindPopup('<b>Lagoa dos Patos</b><br>Maior lagoa da América do Sul<br>Rio Grande do Sul, Brasil');
+
+      // Add some key cities
+      const cities = [
+        { name: 'Rio Grande', coords: [-32.0343, -52.0986] },
+        { name: 'Pelotas', coords: [-31.7648, -52.3382] },
+        { name: 'São Lourenço do Sul', coords: [-33.3025, -52.2141] }
+      ];
+
+      cities.forEach(city => {
+        L.marker(city.coords).addTo(map).bindPopup(`<b>${city.name}</b>`);
+      });
+    }
+
+    // Initialize map when page loads
+    window.addEventListener('load', initMap);
+
+    // Form Submission Handler
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      // Create mailto link
+      const mailtoLink = `mailto:contato@revivelaranjal.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`)}`;
+      
+      window.location.href = mailtoLink;
+
+      // Reset form
+      document.querySelector('.contact-form').reset();
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'slideInRight 0.8s ease-out';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.problem-card, .differential-card, .audience-card, .team-member').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
 </html>
