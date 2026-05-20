@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   <title>Revive Laranjal - Preservando a Lagoa dos Patos</title>
-  <meta name="description" content="Revive Laranjal: Tecnologia EcoBarrier para preservação e restauração da Lagoa dos Patos. Inovação, sustentabilidade e impacto ambiental." />
+  <meta name="description" content="Revive Laranjal: Sistema piloto modular para preservação da Lagoa dos Patos. Interceptação de resíduos, tratamento de água e monitoramento em tempo real no Canal São Gonçalo." />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,10 +22,11 @@
     }
 
     :root {
-      --primary-blue: #0066cc;
-      --secondary-blue: #0099ff;
-      --accent-green: #00b366;
-      --accent-orange: #ff8c00;
+      --primary-green: #1b7d5a;
+      --secondary-green: #2d9f6f;
+      --accent-blue: #2b9fd9;
+      --accent-orange: #ff9500;
+      --light-blue: #a8d8f0;
       --dark-bg: #0a1428;
       --light-bg: #ffffff;
       --text-dark: #1a1a1a;
@@ -62,7 +63,7 @@
       backdrop-filter: blur(10px);
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      padding: 1rem 0;
+      padding: 0.8rem 0;
     }
 
     .nav-container {
@@ -75,15 +76,28 @@
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary-green);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo span {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .logo span {
+        display: inline;
+      }
     }
 
     .nav-links {
@@ -103,7 +117,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--primary-blue);
+      color: var(--primary-green);
     }
 
     .nav-links a::after {
@@ -113,7 +127,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-blue));
       transition: width 0.3s ease;
     }
 
@@ -122,7 +136,7 @@
     }
 
     .cta-button {
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 50px;
@@ -131,22 +145,22 @@
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      box-shadow: 0 4px 15px rgba(27, 125, 90, 0.3);
     }
 
     .cta-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+      box-shadow: 0 6px 25px rgba(27, 125, 90, 0.4);
     }
 
     .cta-button.secondary {
       background: white;
-      color: var(--primary-blue);
-      border: 2px solid var(--primary-blue);
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
     }
 
     .cta-button.secondary:hover {
-      background: var(--primary-blue);
+      background: var(--primary-green);
       color: white;
     }
 
@@ -154,7 +168,7 @@
     .hero {
       margin-top: 70px;
       min-height: 100vh;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
       display: flex;
       align-items: center;
       position: relative;
@@ -168,7 +182,7 @@
       right: -10%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(0, 179, 102, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(27, 125, 90, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       animation: float 6s ease-in-out infinite;
     }
@@ -180,7 +194,7 @@
       left: -5%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(43, 159, 217, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       animation: float 8s ease-in-out infinite reverse;
     }
@@ -204,10 +218,7 @@
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary-green);
     }
 
     .hero-text p {
@@ -261,7 +272,7 @@
       font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      color: var(--text-dark);
+      color: var(--primary-green);
     }
 
     .section-header p {
@@ -273,7 +284,7 @@
 
     /* Problem Section */
     #problema {
-      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
     }
 
     .problem-grid {
@@ -289,19 +300,19 @@
       border-radius: 15px;
       box-shadow: var(--shadow);
       transition: all 0.3s ease;
-      border-left: 4px solid var(--primary-blue);
+      border-left: 4px solid var(--primary-green);
     }
 
     .problem-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
-      border-left-color: var(--accent-green);
+      border-left-color: var(--accent-blue);
     }
 
     .problem-card h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--primary-blue);
+      color: var(--primary-green);
     }
 
     .problem-card p {
@@ -330,7 +341,7 @@
     .step-number {
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       color: white;
       border-radius: 50%;
       display: flex;
@@ -339,7 +350,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin: 0 auto 1rem;
-      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      box-shadow: 0 4px 15px rgba(27, 125, 90, 0.3);
     }
 
     .step h3 {
@@ -355,7 +366,7 @@
 
     /* Differentials Section */
     #diferenciais {
-      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
     }
 
     .differentials-grid {
@@ -371,7 +382,7 @@
       border-radius: 15px;
       box-shadow: var(--shadow);
       transition: all 0.3s ease;
-      border-top: 4px solid var(--accent-green);
+      border-top: 4px solid var(--accent-blue);
     }
 
     .differential-card:hover {
@@ -382,7 +393,7 @@
     .differential-icon {
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, var(--accent-green), #00d966);
+      background: linear-gradient(135deg, var(--accent-blue), #1fb5d9);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -412,15 +423,15 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 3rem;
-      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      background: linear-gradient(135deg, rgba(27, 125, 90, 0.05), rgba(43, 159, 217, 0.05));
       border-radius: 20px;
-      border: 2px solid rgba(0, 102, 204, 0.1);
+      border: 2px solid rgba(27, 125, 90, 0.1);
     }
 
     .mission-content h3 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: var(--primary-blue);
+      color: var(--primary-green);
     }
 
     .mission-content p {
@@ -432,7 +443,7 @@
 
     /* Target Audience Section */
     #publico-alvo {
-      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
     }
 
     .audience-grid {
@@ -485,22 +496,22 @@
     }
 
     .model-card {
-      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      background: linear-gradient(135deg, rgba(27, 125, 90, 0.05), rgba(43, 159, 217, 0.05));
       padding: 2.5rem;
       border-radius: 15px;
-      border: 2px solid rgba(0, 102, 204, 0.1);
+      border: 2px solid rgba(27, 125, 90, 0.1);
       transition: all 0.3s ease;
     }
 
     .model-card:hover {
-      border-color: var(--accent-green);
+      border-color: var(--accent-blue);
       box-shadow: var(--shadow);
     }
 
     .model-card h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--primary-blue);
+      color: var(--primary-green);
     }
 
     .model-card ul {
@@ -518,13 +529,13 @@
       content: '✓';
       position: absolute;
       left: 0;
-      color: var(--accent-green);
+      color: var(--accent-blue);
       font-weight: bold;
     }
 
     /* Social Project Section */
     #projeto-social {
-      background: linear-gradient(135deg, #f5f7fa 0%, #e8f1ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
     }
 
     .social-content {
@@ -538,7 +549,7 @@
     .social-text h3 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: var(--text-dark);
+      color: var(--primary-green);
     }
 
     .social-text p {
@@ -569,7 +580,7 @@
     .team-member {
       text-align: center;
       padding: 2rem;
-      background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(0, 179, 102, 0.05));
+      background: linear-gradient(135deg, rgba(27, 125, 90, 0.05), rgba(43, 159, 217, 0.05));
       border-radius: 15px;
       transition: all 0.3s ease;
     }
@@ -583,14 +594,14 @@
       width: 120px;
       height: 120px;
       margin: 0 auto 1rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-blue));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
       color: white;
-      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      box-shadow: 0 4px 15px rgba(27, 125, 90, 0.3);
     }
 
     .team-member h3 {
@@ -601,7 +612,7 @@
 
     .team-member p {
       font-size: 0.9rem;
-      color: var(--primary-blue);
+      color: var(--primary-green);
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
@@ -613,7 +624,7 @@
 
     /* Metrics Section */
     #metricas {
-      background: linear-gradient(135deg, #0a1428 0%, #1a2a4a 100%);
+      background: linear-gradient(135deg, #1b5a3f 0%, #2d7a52 100%);
       color: white;
     }
 
@@ -674,7 +685,7 @@
     .investor-text h3 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: var(--text-dark);
+      color: var(--primary-green);
     }
 
     .investor-text p {
@@ -699,7 +710,7 @@
     .highlight-icon {
       width: 30px;
       height: 30px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -723,7 +734,7 @@
 
     /* Map Section */
     #mapa {
-      background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
     }
 
     #map-container {
@@ -767,7 +778,7 @@
     .contact-icon {
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -818,8 +829,8 @@
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(27, 125, 90, 0.1);
     }
 
     .form-group textarea {
@@ -828,7 +839,7 @@
     }
 
     .form-submit {
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       color: white;
       padding: 1rem;
       border: none;
@@ -841,7 +852,7 @@
 
     .form-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+      box-shadow: 0 6px 25px rgba(27, 125, 90, 0.4);
     }
 
     /* Social Links */
@@ -855,7 +866,7 @@
     .social-link {
       width: 45px;
       height: 45px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -868,7 +879,7 @@
 
     .social-link:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+      box-shadow: 0 6px 20px rgba(27, 125, 90, 0.4);
     }
 
     /* Footer */
@@ -889,7 +900,7 @@
 
     .footer-section h4 {
       margin-bottom: 1rem;
-      color: var(--accent-green);
+      color: var(--secondary-green);
     }
 
     .footer-section p,
@@ -903,7 +914,7 @@
     }
 
     .footer-section a:hover {
-      color: var(--accent-green);
+      color: var(--secondary-green);
     }
 
     .footer-bottom {
@@ -920,7 +931,7 @@
       right: 30px;
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
       color: white;
       border: none;
       border-radius: 50%;
@@ -929,14 +940,14 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+      box-shadow: 0 4px 15px rgba(27, 125, 90, 0.3);
       transition: all 0.3s ease;
       z-index: 999;
     }
 
     .scroll-to-top:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+      box-shadow: 0 6px 25px rgba(27, 125, 90, 0.4);
     }
 
     .scroll-to-top.show {
@@ -1024,7 +1035,10 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <div class="logo">🌿 Revive Laranjal</div>
+      <a href="#" class="logo">
+        <img src="/manus-storage/revive-laranjal-logo_9752571e.png" alt="Revive Laranjal Logo" />
+        <span>Revive Laranjal</span>
+      </a>
       <ul class="nav-links">
         <li><a href="#problema">Problema</a></li>
         <li><a href="#como-funciona">Como Funciona</a></li>
@@ -1043,7 +1057,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1>Revivendo a Lagoa dos Patos</h1>
-          <p>Tecnologia EcoBarrier: inovação ambiental que preserva, restaura e protege o maior ecossistema aquático da América do Sul através de soluções tecnológicas sustentáveis.</p>
+          <p>Sistema piloto modular para interceptação de resíduos, melhoria da qualidade da água e monitoramento em tempo real no Canal São Gonçalo. Uma solução realista, escalável e ambientalmente responsável.</p>
           <div class="hero-buttons">
             <button class="cta-button" onclick="document.getElementById('como-funciona').scrollIntoView({ behavior: 'smooth' })">Saiba Mais</button>
             <button class="cta-button secondary" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">Seja um Parceiro</button>
@@ -1065,28 +1079,28 @@
       </div>
       <div class="problem-grid">
         <div class="problem-card">
-          <h3>💧 Desequilíbrio de Salinidade</h3>
-          <p>Excesso de água doce prejudica a reprodução de espécies marinhas e altera o ecossistema estuarino delicado.</p>
+          <h3>💧 Poluição da Água</h3>
+          <p>Acúmulo de resíduos sólidos e contaminantes químicos comprometem a qualidade da água e prejudicam a vida aquática.</p>
         </div>
         <div class="problem-card">
-          <h3>🌊 Poluição Aquática</h3>
-          <p>Sedimentos com carga química 6x acima do normal comprometem a qualidade da água e a vida aquática.</p>
+          <h3>🌊 Escoamento Urbano e Rural</h3>
+          <p>Água de áreas urbanas e rurais carrega sedimentos e poluentes que se acumulam na lagoa.</p>
         </div>
         <div class="problem-card">
-          <h3>🔍 Turbidez Crítica</h3>
-          <p>Falta de transparência reduz penetração de luz, diminuindo fotossíntese e afetando toda a cadeia alimentar.</p>
+          <h3>🌧️ Eventos Climáticos Extremos</h3>
+          <p>Aumento do nível hídrico intensificado por chuvas intensas e mudanças climáticas afetam o ecossistema.</p>
         </div>
         <div class="problem-card">
-          <h3>🌱 Assoreamento</h3>
-          <p>Desmatamento das margens causa assoreamento, reduzindo profundidade e capacidade de navegação.</p>
+          <h3>🌱 Impacto na Biodiversidade</h3>
+          <p>200+ espécies de aves migratórias e fauna aquática sofrem com degradação do habitat.</p>
         </div>
         <div class="problem-card">
-          <h3>🌡️ Mudanças Climáticas</h3>
-          <p>Alterações de temperatura e padrões de salinidade afetam ciclos reprodutivos e aves migratórias.</p>
+          <h3>🏘️ Pressão Econômica</h3>
+          <p>Comunidades ribeirinhas que dependem da lagoa para subsistência enfrentam redução de recursos.</p>
         </div>
         <div class="problem-card">
-          <h3>🦅 Biodiversidade em Risco</h3>
-          <p>200+ espécies de aves e fauna aquática sofrem com degradação do habitat e redução de alimentos.</p>
+          <h3>📍 Ponto Crítico: Canal São Gonçalo</h3>
+          <p>O canal concentra água e resíduos antes de se espalharem pela lagoa - um ponto estratégico de ação.</p>
         </div>
       </div>
     </div>
@@ -1096,29 +1110,29 @@
   <section id="como-funciona">
     <div class="container">
       <div class="section-header">
-        <h2>Como Funciona a EcoBarrier</h2>
-        <p>Tecnologia inovadora de filtração e proteção ambiental</p>
+        <h2>Como Funciona o Sistema Piloto</h2>
+        <p>Estruturas flutuantes modulares instaladas no Canal São Gonçalo</p>
       </div>
       <div class="steps-container">
         <div class="step">
           <div class="step-number">1</div>
-          <h3>Captura Inteligente</h3>
-          <p>Sistema de barreiras flutuantes captura sedimentos e poluentes antes que contaminem a lagoa.</p>
+          <h3>Captura de Resíduos</h3>
+          <p>Redes especializadas interceptam lixo sólido antes que se espalhe pela lagoa, reduzindo impacto ambiental.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <h3>Filtração Avançada</h3>
-          <p>Tecnologia de múltiplas camadas filtra partículas, nutrientes em excesso e contaminantes químicos.</p>
+          <h3>Biofiltração Natural</h3>
+          <p>Plantas aquáticas nativas atuam como biofiltros, tratando naturalmente a água e reduzindo nutrientes em excesso.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
           <h3>Monitoramento em Tempo Real</h3>
-          <p>Sensores IoT rastreiam qualidade da água, salinidade, turbidez e biodiversidade continuamente.</p>
+          <p>Sensores rastreiam nível da água, qualidade hídrica e comportamento do fluxo continuamente.</p>
         </div>
         <div class="step">
           <div class="step-number">4</div>
-          <h3>Restauração Ecológica</h3>
-          <p>Dados alimentam programas de restauração de habitats e reintrodução de espécies nativas.</p>
+          <h3>Micro-Habitat</h3>
+          <p>Estrutura funciona como habitat para fauna aquática, reduzindo impactos e promovendo biodiversidade.</p>
         </div>
       </div>
     </div>
@@ -1128,39 +1142,39 @@
   <section id="diferenciais">
     <div class="container">
       <div class="section-header">
-        <h2>Nossos Diferenciais</h2>
-        <p>Por que a EcoBarrier é a solução mais inovadora para preservação ambiental</p>
+        <h2>Diferenciais da Solução</h2>
+        <p>Por que o sistema piloto é uma abordagem inovadora e realista</p>
       </div>
       <div class="differentials-grid">
         <div class="differential-card">
-          <div class="differential-icon">🔬</div>
-          <h3>Tecnologia Proprietária</h3>
-          <p>Sistema patenteado de filtração que combina engenharia ambiental com IA para máxima eficiência.</p>
+          <div class="differential-icon">🎯</div>
+          <h3>Foco Estratégico</h3>
+          <p>Concentra esforços no Canal São Gonçalo, um ponto de máximo impacto com menor custo.</p>
         </div>
         <div class="differential-card">
-          <div class="differential-icon">📊</div>
-          <h3>Dados em Tempo Real</h3>
-          <p>Plataforma de monitoramento que fornece insights sobre qualidade ambiental e impacto das ações.</p>
+          <div class="differential-icon">🔄</div>
+          <h3>Modular e Escalável</h3>
+          <p>Sistema piloto pode ser expandido para outras áreas estratégicas, incluindo conexão com oceano.</p>
         </div>
         <div class="differential-card">
           <div class="differential-icon">♻️</div>
           <h3>100% Sustentável</h3>
-          <p>Materiais ecológicos, energia renovável e zero resíduos no processo de operação.</p>
+          <p>Estruturas flutuantes, plantas nativas e processos naturais minimizam impacto ambiental.</p>
         </div>
         <div class="differential-card">
-          <div class="differential-icon">🌍</div>
-          <h3>Escalável Globalmente</h3>
-          <p>Modelo adaptável para diferentes ecossistemas aquáticos em todo o mundo.</p>
+          <div class="differential-icon">📊</div>
+          <h3>Dados Concretos</h3>
+          <p>Monitoramento gera dados científicos para validar modelo e guiar futuras expansões.</p>
         </div>
         <div class="differential-card">
-          <div class="differential-icon">💰</div>
-          <h3>ROI Comprovado</h3>
-          <p>Retorno mensurável em biodiversidade, turismo e economia local em 12-18 meses.</p>
+          <div class="differential-icon">🌿</div>
+          <h3>Micro-Habitat</h3>
+          <p>Estrutura protege fauna aquática e contribui para biodiversidade local.</p>
         </div>
         <div class="differential-card">
-          <div class="differential-icon">🤝</div>
-          <h3>Parcerias Estratégicas</h3>
-          <p>Colaboração com universidades, ONGs e órgãos ambientais para máximo impacto.</p>
+          <div class="differential-icon">💡</div>
+          <h3>Realista e Viável</h3>
+          <p>Abordagem pragmática que reconhece complexidade e oferece solução implementável.</p>
         </div>
       </div>
     </div>
@@ -1173,9 +1187,9 @@
         <h2>Nossa Missão</h2>
       </div>
       <div class="mission-content">
-        <h3>Preservar e Restaurar Ecossistemas Aquáticos Através da Inovação Tecnológica</h3>
-        <p>Na Revive Laranjal, acreditamos que a tecnologia deve servir à natureza. Nossa missão é desenvolver soluções inovadoras que não apenas protejam a Lagoa dos Patos, mas que sirvam como modelo para preservação de ecossistemas aquáticos em todo o mundo.</p>
-        <p>Combinamos engenharia de ponta, ciência ambiental e compromisso social para criar um futuro onde a tecnologia e a natureza trabalham em harmonia perfeita.</p>
+        <h3>Primeiro Passo para Preservação da Lagoa dos Patos</h3>
+        <p>Na Revive Laranjal, reconhecemos que resolver todos os problemas da lagoa exigiria intervenções muito maiores. Por isso, nossa missão é criar uma solução piloto realista que funcione na prática, gere resultados concretos e forneça dados para futuras expansões.</p>
+        <p>Combinamos engenharia sustentável, ciência ambiental e pragmatismo para oferecer um primeiro passo concreto na preservação da Lagoa dos Patos - um modelo que pode ser expandido e adaptado para outras regiões estratégicas.</p>
       </div>
     </div>
   </section>
@@ -1185,13 +1199,13 @@
     <div class="container">
       <div class="section-header">
         <h2>Público-Alvo e Mercado</h2>
-        <p>Soluções para múltiplos stakeholders interessados em sustentabilidade</p>
+        <p>Stakeholders interessados em preservação ambiental da Lagoa dos Patos</p>
       </div>
       <div class="audience-grid">
         <div class="audience-card">
           <div class="audience-icon">🏛️</div>
           <h3>Órgãos Governamentais</h3>
-          <p>Secretarias de Meio Ambiente, agências de proteção ambiental e gestão de recursos hídricos.</p>
+          <p>Secretarias de Meio Ambiente, FEPAM e agências de gestão de recursos hídricos.</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">🏢</div>
@@ -1201,22 +1215,22 @@
         <div class="audience-card">
           <div class="audience-icon">🌱</div>
           <h3>ONGs Ambientais</h3>
-          <p>Organizações focadas em conservação, restauração ecológica e educação ambiental.</p>
+          <p>Organizações focadas em conservação e restauração ecológica da lagoa.</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">🎓</div>
           <h3>Instituições Acadêmicas</h3>
-          <p>Universidades e centros de pesquisa em ciências ambientais e engenharia.</p>
+          <p>Universidades como FURG em pesquisa ambiental e monitoramento ecológico.</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">🌍</div>
           <h3>Comunidades Locais</h3>
-          <p>Populações ribeirinhas que dependem da lagoa para subsistência e qualidade de vida.</p>
+          <p>Populações ribeirinhas e pescadores que dependem da lagoa para subsistência.</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">💼</div>
           <h3>Investidores de Impacto</h3>
-          <p>Fundos e investidores focados em retorno financeiro com impacto ambiental positivo.</p>
+          <p>Fundos focados em retorno financeiro com impacto ambiental e social positivo.</p>
         </div>
       </div>
     </div>
@@ -1233,41 +1247,41 @@
         <div class="model-card">
           <h3>Receitas</h3>
           <ul>
-            <li>Licenciamento de tecnologia EcoBarrier</li>
-            <li>Serviços de monitoramento e consultoria</li>
-            <li>Venda de dados ambientais e insights</li>
-            <li>Projetos de restauração ecológica</li>
-            <li>Treinamento e capacitação técnica</li>
+            <li>Implementação de sistemas pilotos</li>
+            <li>Monitoramento e consultoria ambiental</li>
+            <li>Venda de dados ambientais</li>
+            <li>Parcerias com órgãos governamentais</li>
+            <li>Projetos de expansão e replicação</li>
           </ul>
         </div>
         <div class="model-card">
           <h3>Impacto Ambiental (E)</h3>
           <ul>
-            <li>Redução de 85% em poluição aquática</li>
-            <li>Restauração de 10.000 ha de habitat</li>
-            <li>Aumento de 200+ espécies de fauna</li>
-            <li>Melhoria de 90% na qualidade da água</li>
-            <li>Sequestro de carbono: 50.000 t/ano</li>
+            <li>Redução de poluição no canal</li>
+            <li>Melhoria da qualidade da água</li>
+            <li>Proteção de 200+ espécies de aves</li>
+            <li>Dados para futuras expansões</li>
+            <li>Modelo escalável para outras regiões</li>
           </ul>
         </div>
         <div class="model-card">
           <h3>Impacto Social (S)</h3>
           <ul>
-            <li>2.000+ empregos diretos e indiretos</li>
-            <li>Educação ambiental para 50.000 pessoas</li>
-            <li>Resgate e reabilitação de fauna</li>
-            <li>Melhoria de renda para comunidades</li>
+            <li>Proteção de comunidades ribeirinhas</li>
+            <li>Educação ambiental local</li>
+            <li>Oportunidades de emprego</li>
+            <li>Melhoria de qualidade de vida</li>
             <li>Segurança alimentar para populações</li>
           </ul>
         </div>
         <div class="model-card">
           <h3>Governança (G)</h3>
           <ul>
-            <li>Conselho multidisciplinar de especialistas</li>
+            <li>Parcerias com instituições acadêmicas</li>
             <li>Transparência total em operações</li>
             <li>Conformidade com legislação ambiental</li>
-            <li>Parcerias com órgãos reguladores</li>
-            <li>Relatórios de impacto anuais verificados</li>
+            <li>Colaboração com órgãos reguladores</li>
+            <li>Relatórios de impacto verificados</li>
           </ul>
         </div>
       </div>
@@ -1292,7 +1306,7 @@
             <li>Educação ambiental em escolas locais</li>
             <li>Campanhas de conscientização comunitária</li>
           </ul>
-          <p style="margin-top: 1rem;">Já resgatamos mais de 5.000 animais e impactamos 50.000 pessoas com educação ambiental.</p>
+          <p style="margin-top: 1rem;">Trabalhamos para proteger a biodiversidade e impactar positivamente as comunidades locais.</p>
         </div>
         <div class="social-image">
           <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663599793935/TPCCvi8AfRAWVpZnfpqUwU/team-collaboration-AcNokYNqsLvgpVQaKyxJJN.webp" alt="Equipe trabalhando em projeto social" />
@@ -1354,32 +1368,32 @@
     <div class="container">
       <div class="section-header" style="color: white;">
         <h2 style="color: white;">Dados e Métricas de Impacto</h2>
-        <p style="color: rgba(255, 255, 255, 0.8);">Resultados mensuráveis de nosso trabalho</p>
+        <p style="color: rgba(255, 255, 255, 0.8);">Objetivos mensuráveis do projeto piloto</p>
       </div>
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-number">85%</div>
-          <div class="metric-label">Redução de Poluição</div>
+          <div class="metric-number">70%</div>
+          <div class="metric-label">Redução de Resíduos Sólidos</div>
         </div>
         <div class="metric-card">
-          <div class="metric-number">10K+</div>
-          <div class="metric-label">Hectares Restaurados</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-number">5K+</div>
-          <div class="metric-label">Animais Resgatados</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-number">50K+</div>
-          <div class="metric-label">Pessoas Impactadas</div>
+          <div class="metric-number">50%</div>
+          <div class="metric-label">Melhoria de Qualidade da Água</div>
         </div>
         <div class="metric-card">
           <div class="metric-number">200+</div>
           <div class="metric-label">Espécies Protegidas</div>
         </div>
         <div class="metric-card">
-          <div class="metric-number">50K</div>
-          <div class="metric-label">Toneladas CO₂ Sequestradas</div>
+          <div class="metric-number">5K+</div>
+          <div class="metric-label">Pessoas Impactadas</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">12-18</div>
+          <div class="metric-label">Meses para Resultados</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">100%</div>
+          <div class="metric-label">Sustentável e Escalável</div>
         </div>
       </div>
     </div>
@@ -1389,8 +1403,8 @@
   <section id="mapa">
     <div class="container">
       <div class="section-header">
-        <h2>Localização: Lagoa dos Patos</h2>
-        <p>Maior lagoa da América do Sul, localizada no Rio Grande do Sul, Brasil</p>
+        <h2>Localização: Canal São Gonçalo e Laranjal</h2>
+        <p>Ponto estratégico de ação na Lagoa dos Patos, Rio Grande do Sul</p>
       </div>
       <div id="map-container">
         <div id="map"></div>
@@ -1411,28 +1425,28 @@
         </div>
         <div class="investor-text">
           <h3>Oportunidade de Investimento</h3>
-          <p>Revive Laranjal busca investimento de R$ 50 milhões para expandir operações e impacto ambiental nos próximos 3 anos.</p>
+          <p>Revive Laranjal busca investimento para implementar o sistema piloto no Canal São Gonçalo e gerar dados para futuras expansões.</p>
           
           <div class="investor-highlights">
             <div class="highlight-item">
               <div class="highlight-icon">📈</div>
               <div class="highlight-text">
-                <h4>Projeção de Retorno</h4>
-                <p>ROI de 25-35% ao ano com payback em 4-5 anos</p>
+                <h4>Modelo Realista</h4>
+                <p>Projeto piloto com escopo definido e objetivos mensuráveis</p>
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🌍</div>
               <div class="highlight-text">
-                <h4>Impacto Mensurável</h4>
-                <p>Relatórios trimestrais de impacto ambiental e social verificados</p>
+                <h4>Impacto Comprovado</h4>
+                <p>Dados científicos e monitoramento em tempo real</p>
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🏆</div>
               <div class="highlight-text">
-                <h4>Modelo Comprovado</h4>
-                <p>Piloto bem-sucedido com resultados superiores às expectativas</p>
+                <h4>Escalabilidade</h4>
+                <p>Modelo que pode ser expandido para outras regiões estratégicas</p>
               </div>
             </div>
             <div class="highlight-item">
@@ -1470,7 +1484,7 @@
             <div class="contact-icon">📞</div>
             <div class="contact-details">
               <h3>Telefone</h3>
-              <p>+55 (53) 99999-9999</p>
+              <p>+55 (53) 991670953</p>
             </div>
           </div>
           <div class="contact-item">
@@ -1526,7 +1540,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <h4>Sobre Revive Laranjal</h4>
-          <p>Startup ambiental dedicada à preservação e restauração da Lagoa dos Patos através de tecnologia inovadora e sustentável.</p>
+          <p>Startup ambiental dedicada à preservação e restauração da Lagoa dos Patos através de sistema piloto modular sustentável.</p>
         </div>
         <div class="footer-section">
           <h4>Links Rápidos</h4>
@@ -1583,23 +1597,23 @@
 
     // Initialize Map
     function initMap() {
-      const lagoa = [-32.1, -52.3]; // Coordinates of Lagoa dos Patos
-      const map = L.map('map').setView(lagoa, 9);
+      const laranjal = [-32.1, -52.3]; // Coordinates of Laranjal/Canal São Gonçalo
+      const map = L.map('map').setView(laranjal, 11);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 19
       }).addTo(map);
 
-      // Add marker for Lagoa dos Patos
-      L.circleMarker(lagoa, {
+      // Add marker for Canal São Gonçalo
+      L.circleMarker(laranjal, {
         radius: 8,
-        fillColor: '#0066cc',
+        fillColor: '#1b7d5a',
         color: '#fff',
         weight: 2,
         opacity: 1,
         fillOpacity: 0.8
-      }).addTo(map).bindPopup('<b>Lagoa dos Patos</b><br>Maior lagoa da América do Sul<br>Rio Grande do Sul, Brasil');
+      }).addTo(map).bindPopup('<b>Canal São Gonçalo - Laranjal</b><br>Ponto estratégico do projeto piloto<br>Rio Grande do Sul, Brasil');
 
       // Add some key cities
       const cities = [
