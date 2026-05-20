@@ -107,6 +107,20 @@ temp/
 
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
+.manus-logs/
 
 # Manus version file (auto-generated, not part of source)
 client/public/__manus__/version.json
+
+# Project configuration with secrets (contains AWS credentials and API keys)
+.project-config.json
+
+# IDE and system files that may contain secrets
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# Manus logs and debug files
+.manus-logs/
+.debug/
