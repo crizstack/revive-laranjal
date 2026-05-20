@@ -565,63 +565,6 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* Team Section */
-    #equipe {
-      background: white;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .team-member {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(27, 125, 90, 0.05), rgba(43, 159, 217, 0.05));
-      border-radius: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .team-member:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
-
-    .team-member-image {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 1rem;
-      background: linear-gradient(135deg, var(--primary-green), var(--accent-blue));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      box-shadow: 0 4px 15px rgba(27, 125, 90, 0.3);
-    }
-
-    .team-member h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: var(--text-dark);
-    }
-
-    .team-member p {
-      font-size: 0.9rem;
-      color: var(--primary-green);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .team-member span {
-      font-size: 0.85rem;
-      color: var(--text-light);
-    }
-
     /* Metrics Section */
     #metricas {
       background: linear-gradient(135deg, #1b5a3f 0%, #2d7a52 100%);
@@ -1469,53 +1412,7 @@ Error generating stack: `+l.message+`
     </div>
   </section>
 
-  <!-- Equipe Section -->
-  <section id="equipe">
-    <div class="container">
-      <div class="section-header">
-        <h2>Nossa Equipe</h2>
-        <p>Especialistas dedicados à preservação ambiental</p>
-      </div>
-      <div class="team-grid">
-        <div class="team-member">
-          <div class="team-member-image">👨‍💼</div>
-          <h3>Dr. Carlos Silva</h3>
-          <p>CEO & Fundador</p>
-          <span>Engenheiro Ambiental, PhD em Sustentabilidade</span>
-        </div>
-        <div class="team-member">
-          <div class="team-member-image">👩‍🔬</div>
-          <h3>Dra. Marina Santos</h3>
-          <p>Diretora Científica</p>
-          <span>Bióloga Marinha, 15 anos de pesquisa</span>
-        </div>
-        <div class="team-member">
-          <div class="team-member-image">👨‍💻</div>
-          <h3>João Oliveira</h3>
-          <p>CTO</p>
-          <span>Engenheiro de Software, Especialista em IoT</span>
-        </div>
-        <div class="team-member">
-          <div class="team-member-image">👩‍💼</div>
-          <h3>Fernanda Costa</h3>
-          <p>Diretora de Impacto Social</p>
-          <span>Assistente Social, Especialista em Comunidades</span>
-        </div>
-        <div class="team-member">
-          <div class="team-member-image">👨‍🔧</div>
-          <h3>Roberto Mendes</h3>
-          <p>Engenheiro de Operações</p>
-          <span>Especialista em Sistemas de Filtração</span>
-        </div>
-        <div class="team-member">
-          <div class="team-member-image">👩‍📊</div>
-          <h3>Juliana Ferreira</h3>
-          <p>Analista de Dados</p>
-          <span>Cientista de Dados, Especialista em Análise Ambiental</span>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Métricas Section -->
   <section id="metricas">
@@ -2009,7 +1906,7 @@ Error generating stack: `+l.message+`
       });
     }, observerOptions);
 
-    document.querySelectorAll('.problem-card, .differential-card, .audience-card, .team-member').forEach(el => {
+    document.querySelectorAll('.problem-card, .differential-card, .audience-card').forEach(el => {
       observer.observe(el);
     });
   </script>
