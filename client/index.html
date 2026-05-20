@@ -954,6 +954,99 @@
       display: flex;
     }
 
+    /* FAQ Section */
+    #faq {
+      background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f1 100%);
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(27, 125, 90, 0.05), rgba(43, 159, 217, 0.05));
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: linear-gradient(135deg, rgba(27, 125, 90, 0.1), rgba(43, 159, 217, 0.1));
+    }
+
+    .faq-question h3 {
+      font-size: 1.1rem;
+      color: var(--primary-green);
+      margin: 0;
+      flex: 1;
+    }
+
+    .faq-toggle {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 800px;
+    }
+
+    .faq-answer-content {
+      padding: 1.5rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .faq-answer-content p {
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer-content ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer-content li {
+      margin-bottom: 0.5rem;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
@@ -1043,7 +1136,7 @@
         <li><a href="#problema">Problema</a></li>
         <li><a href="#como-funciona">Como Funciona</a></li>
         <li><a href="#diferenciais">Diferenciais</a></li>
-        <li><a href="#missao">Missão</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#investidores">Investidores</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -1412,6 +1505,173 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Perguntas Frequentes</h2>
+        <p>Tire suas dúvidas sobre o projeto piloto, timeline, investimento e escalabilidade</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Qual é o escopo exato do projeto piloto?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>O projeto piloto é um <strong>sistema modular realista</strong> instalado no Canal São Gonçalo, próximo à região do Laranjal. Não pretendemos resolver todos os problemas da Lagoa dos Patos de uma só vez, mas criar uma solução que funcione na prática.</p>
+              <p><strong>Componentes principais:</strong></p>
+              <ul>
+                <li>Estruturas flutuantes modulares para captura de resíduos sólidos</li>
+                <li>Biofiltros com plantas aquáticas nativas para tratamento natural da água</li>
+                <li>Mecanismos simples para controle parcial do fluxo hídrico</li>
+                <li>Sensores para monitoramento em tempo real (nível da água, qualidade hídrica)</li>
+                <li>Design pensado como micro-habitat para proteção da fauna aquática</li>
+              </ul>
+              <p>O objetivo é gerar dados concretos e validar o modelo para futuras expansões em outras áreas estratégicas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Qual é a timeline do projeto? Quando começará?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p><strong>Timeline estimada:</strong></p>
+              <ul>
+                <li><strong>Fase 1 (Meses 1-3):</strong> Aprovações regulatórias e parcerias com órgãos governamentais</li>
+                <li><strong>Fase 2 (Meses 4-6):</strong> Fabricação e montagem das estruturas flutuantes</li>
+                <li><strong>Fase 3 (Meses 7-9):</strong> Instalação no Canal São Gonçalo e início do monitoramento</li>
+                <li><strong>Fase 4 (Meses 10-18):</strong> Operação piloto, coleta de dados e análise de resultados</li>
+              </ul>
+              <p><strong>Primeiros resultados esperados:</strong> 12-18 meses após início da operação</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Quanto de investimento é necessário?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>O investimento necessário para o <strong>projeto piloto completo</strong> está estruturado em:</p>
+              <ul>
+                <li><strong>Engenharia e Design:</strong> Projeto técnico, aprovações e consultoria ambiental</li>
+                <li><strong>Fabricação de Estruturas:</strong> Estruturas flutuantes, redes, biofiltros e sistemas de ancoragem</li>
+                <li><strong>Sensores e Monitoramento:</strong> Equipamentos IoT para coleta de dados em tempo real</li>
+                <li><strong>Instalação e Operação:</strong> Mão de obra, logística e operação durante 18 meses</li>
+                <li><strong>Pesquisa e Análise:</strong> Parcerias com universidades para análise de dados</li>
+              </ul>
+              <p>Para informações específicas sobre valores, entre em contato conosco. Estamos abertos a diferentes modelos de investimento.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Qual é o retorno esperado do investimento?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>O retorno é <strong>multidimensional</strong> e vai além do financeiro:</p>
+              <ul>
+                <li><strong>Impacto Ambiental:</strong> 70% de redução de resíduos, 50% de melhoria na qualidade da água</li>
+                <li><strong>Impacto Social:</strong> Proteção de 200+ espécies de aves, benefício para 5.000+ pessoas</li>
+                <li><strong>Dados Científicos:</strong> Pesquisa validada para replicação em outras regiões</li>
+                <li><strong>Modelo de Negócio:</strong> Receitas futuras através de implementação em outras áreas</li>
+                <li><strong>Reconhecimento ESG:</strong> Posicionamento como investidor em tecnologia ambiental</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Como o modelo será escalado após o piloto?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>A escalabilidade é um <strong>pilar central</strong> do projeto. Após o sucesso do piloto:</p>
+              <ul>
+                <li><strong>Outras regiões do Canal São Gonçalo:</strong> Replicação modular em trechos adicionais</li>
+                <li><strong>Outros canais e rios:</strong> Aplicação em sistemas hídricos similares</li>
+                <li><strong>Conexão com o oceano:</strong> Adaptação para regiões mais complexas</li>
+                <li><strong>Outras lagoas brasileiras:</strong> Modelo escalável para sistemas similares</li>
+              </ul>
+              <p>Dados do piloto validam a eficácia; parcerias ampliam alcance; modelo modular permite customização.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Quais são as parcerias envolvidas?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>O projeto é desenvolvido em colaboração com:</p>
+              <ul>
+                <li><strong>Órgãos Governamentais:</strong> FEPAM, Secretaria de Meio Ambiente do RS</li>
+                <li><strong>Instituições Acadêmicas:</strong> FURG, UFRGS e outras universidades</li>
+                <li><strong>ONGs Ambientais:</strong> Organizações focadas em conservação</li>
+                <li><strong>Comunidades Locais:</strong> Populações ribeirinhas e pescadores</li>
+                <li><strong>Investidores de Impacto:</strong> Fundos comprometidos com retorno ambiental</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Quais são os riscos do projeto?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p><strong>Riscos identificados e estratégias de mitigação:</strong></p>
+              <ul>
+                <li><strong>Riscos Regulatórios:</strong> Parcerias com órgãos governamentais garantem conformidade</li>
+                <li><strong>Riscos Climáticos:</strong> Design modular permite adaptação a eventos extremos</li>
+                <li><strong>Riscos Técnicos:</strong> Equipe experiente; testes antes da instalação</li>
+                <li><strong>Riscos Financeiros:</strong> Modelo diversificado; receitas complementares</li>
+                <li><strong>Riscos Sociais:</strong> Engajamento comunitário desde o início</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Que resultados concretos espera-se do piloto?</h3>
+            <div class="faq-toggle">▼</div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p><strong>Métricas de sucesso esperadas:</strong></p>
+              <ul>
+                <li><strong>Redução de Resíduos:</strong> 70% de redução de lixo sólido no trecho</li>
+                <li><strong>Qualidade da Água:</strong> 50% de melhoria em indicadores hídricos</li>
+                <li><strong>Biodiversidade:</strong> Proteção de 200+ espécies de aves e fauna aquática</li>
+                <li><strong>Impacto Social:</strong> Benefício para 5.000+ pessoas nas comunidades</li>
+                <li><strong>Dados Científicos:</strong> Publicação de pesquisas validando o modelo</li>
+                <li><strong>Viabilidade Econômica:</strong> Demonstração de modelo sustentável</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Investidores Section -->
   <section id="investidores">
     <div class="container">
@@ -1593,6 +1853,12 @@
         top: 0,
         behavior: 'smooth'
       });
+    }
+
+    // Toggle FAQ Items
+    function toggleFAQ(element) {
+      const faqItem = element.parentElement;
+      faqItem.classList.toggle('active');
     }
 
     // Initialize Map
