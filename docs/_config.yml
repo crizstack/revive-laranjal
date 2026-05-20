@@ -1,0 +1,4 @@
+# GitHub Pages configuration
+# This file disables Jekyll processing and serves the site as static HTML
+theme: null
+plugins: []
